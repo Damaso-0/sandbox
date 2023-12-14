@@ -1,0 +1,106 @@
+.sidebarWrapper {
+  width: 300px;
+  min-width: 300px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 32px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-x: hidden;
+  transition: all 0.1s ease;
+
+  border-right: 1px solid #ddd;
+  background-color: rgb(var(--foreground-color));
+}
+
+.sidebarWrapperClosed {
+  width: 64px;
+  min-width: 64px;
+}
+
+.sidebarToggleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.sidebarToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.1s ease;
+}
+
+.sidebarToggle * {
+  cursor: pointer;
+}
+
+.sidebarToggle:hover {
+  background-color: #e5e5e5;
+}
+
+.sidebarItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+}
+
+.sidebarItems {
+  list-style: none;
+  width: 100%;
+
+  margin-left: 16px;
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid #ddd;
+}
+
+.sidebarDividerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 8px 16px;
+  gap: 8px;
+  border-radius: 999px 0 0 999px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.sidebarItem * {
+  cursor: pointer;
+}
+
+.sidebarItem a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+
+  font-size: 16px;
+  font-weight: 300;
+  color: #555;
+}
+
+.sidebarItem:hover,
+.sidebarItemActive {
+  padding-left: 24px;
+  background-color: #e8e8e8;
+}
