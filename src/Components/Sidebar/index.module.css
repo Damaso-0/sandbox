@@ -23,9 +23,15 @@
 .sidebarToggleWrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
   padding: 0 16px;
+}
+
+.sidebarTitle {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
 }
 
 .sidebarToggle {

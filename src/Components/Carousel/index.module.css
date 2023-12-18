@@ -1,0 +1,96 @@
+.carousel__container {
+  display: flex;
+  width: calc(100% + var(--carousel-padding) + 4px) !important;
+  min-height: 50px;
+  justify-content: flex-start;
+
+  margin: 0 auto;
+  margin-left: calc(-1 * var(--carousel-padding) / 2 - 2px);
+
+  position: relative;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.carousel__slider {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity !important;
+  scroll-padding: 0 var(--carousel-padding);
+  padding: 0 var(--carousel-padding);
+
+  scroll-behavior: smooth;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.carousel__childItem {
+  scroll-snap-align: start !important;
+}
+
+.carousel__slider::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__leftButton,
+.carousel__rightButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--generic-carousel-button-size);
+  height: calc(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+
+  z-index: 2;
+
+  transition: all 0.1s ease-in-out;
+
+  cursor: pointer;
+
+  background: rgb(var(--foreground-color), 0.5);
+}
+
+.carousel__leftButton *,
+.carousel__rightButton * {
+  cursor: pointer;
+  transition: all 0.1s ease;
+
+  filter: drop-shadow(0 0 var(--padding) rgb(var(--foreground-rgb)));
+}
+
+.carousel__leftButton:hover svg,
+.carousel__rightButton:hover svg {
+  width: 40px;
+  height: 40px;
+}
+
+.carousel__leftButton {
+  left: 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.carousel__rightButton {
+  right: 0;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+@media screen and (max-width: 768px) {
+  .carousel__leftButton,
+  .carousel__rightButton,
+  .carousel__overlayLeft,
+  .carousel__overlayRight {
+    display: none;
+  }
+
+  .carousel__slider {
+    width: calc(100% - var(--carousel-padding));
+  }
+}

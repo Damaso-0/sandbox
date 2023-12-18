@@ -1,0 +1,79 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.genericCarousel {
+  width: 100% !important;
+}
+
+.genericCarouselCard {
+  display: flex;
+  align-items: flex-end;
+
+  width: 48%;
+  min-width: 48%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding: 8px;
+
+  position: relative;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  transition: all 0.5s ease;
+}
+
+.genericCarouselCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+.genericCarouselCard:hover::after {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+@media screen and (min-width: 768px) {
+  .genericCarouselCard {
+    width: 32.3%;
+    min-width: 32.3%;
+  } 
+}
+
+@media screen and (min-width: 912px) {
+  .genericCarouselCard {
+    width: 24%;
+    min-width: 24%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .genericCarouselCard {
+    width: 24.3%;
+    min-width: 24.3%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .genericCarouselCard {
+    width: 19.4%;
+    min-width: 19.4%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .genericCarouselCard {
+    width: 16.15%;
+    min-width: 16.15%;
+  }
+}

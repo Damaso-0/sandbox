@@ -1,0 +1,57 @@
+.h1,
+.h2,
+.h3,
+.h4,
+.p,
+.span,
+.a {
+  color: rgb(var(--font-color));
+  font-weight: 300;
+}
+
+.h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.h2 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.h4 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.p {
+  font-size: 16px;
+  line-height: 28px;
+  color: #555;
+}
+
+.span {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.a {
+  text-decoration: none;
+  color: rgb(100, 100, 255);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.a:hover {
+  text-decoration: underline;
+}

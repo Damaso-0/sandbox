@@ -7,6 +7,10 @@
 
   --font-color: 50, 50, 50;
   --foreground-color: 245, 245, 245;
+
+  --carousel-padding: 60px;
+  --generic-carousel-item-size: 200px;
+  --generic-carousel-button-size: 60px;
 }
 
 * {
@@ -25,7 +29,7 @@ body {
 
 body {
   color: rgb(var(--font-color));
-  background: rgb(220,220,220);
+  background: rgb(200, 220, 220);
 }
 
 a {
@@ -52,3 +56,9 @@ a {
 
   overflow-y: scroll;
 }
+
+/* @media screen and (min-width: 992px) {
+  :root {
+    --generic-carousel-button-size: 5%;
+  }
+} */

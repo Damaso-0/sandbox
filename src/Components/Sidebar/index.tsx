@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import styles from './index.module.css'
+import { P } from '../Typograph'
+import Link from 'next/link'
 
 const items = [
   {
@@ -31,7 +33,7 @@ const items = [
 ]
 
 const Sidebar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
     <aside
@@ -40,12 +42,18 @@ const Sidebar = () => {
       }`}
       aria-label="Sidebar">
       <div className={styles.sidebarToggleWrapper}>
+        {isSidebarOpen && (
+          <Link href="/" style={{ cursor: 'pointer' }}>
+            <P className={styles.sidebarTitle}>Sandbox</P>
+          </Link>
+        )}
+
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className={styles.sidebarToggle}>
           {isSidebarOpen ? (
             <svg
-              fill="#222"
+              fill="#555"
               xmlns="http://www.w3.org/2000/svg"
               height="24"
               width="12"
@@ -54,7 +62,7 @@ const Sidebar = () => {
             </svg>
           ) : (
             <svg
-              fill="#222"
+              fill="#555"
               xmlns="http://www.w3.org/2000/svg"
               height="24"
               width="12"
