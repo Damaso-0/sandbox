@@ -1,0 +1,41 @@
+.tabs__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs__labels {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.tabs__button {
+    border: none;
+    background-color: #eee;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+
+    cursor: pointer;
+
+    color: #888;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.tabs__buttonActive {
+    background-color: #e2e2e2;
+    
+    pointer-events: none;
+}
+
+.tabs__content {
+    display: flex;
+    flex-direction: column;
+
+    background: #e2e2e2;
+    border-radius: 0 8px 8px 8px;
+
+    padding: 16px;
+}

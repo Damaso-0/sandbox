@@ -1,0 +1,10 @@
+.setion {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

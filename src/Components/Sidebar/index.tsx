@@ -28,7 +28,7 @@ const items = [
   },
   {
     title: 'Tabs',
-    href: '#',
+    href: '/tabs',
   },
 ]
 
