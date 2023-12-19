@@ -11,20 +11,8 @@ const items = [
     href: 'carousel',
   },
   {
-    title: 'Accordion',
-    href: '#',
-  },
-  {
-    title: 'Card',
-    href: '#',
-  },
-  {
-    title: 'Modal',
-    href: '#',
-  },
-  {
-    title: 'Table',
-    href: '#',
+    title: 'Quiz',
+    href: '/quiz',
   },
   {
     title: 'Tabs',
