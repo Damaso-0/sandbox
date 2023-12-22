@@ -1,5 +1,6 @@
 .quiz__container,
-.quiz__result {
+.quiz__result,
+.quiz__presentation {
   width: 100%;
   height: auto;
 
@@ -12,12 +13,30 @@
   border: 1px solid #e2e2e2;
 }
 
- .quiz__questionContainer {
+.quiz__presentation {
+  align-items: center;
+}
+
+.quiz__cover {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.quiz__questionRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.quiz__questionContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
- }
+}
 
 .quiz__questionContainer img {
   width: 100%;
@@ -25,6 +44,52 @@
   aspect-ratio: 16 / 4;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.quiz__timerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  min-height: 90px;
+  border-radius: 8px;
+}
+
+.quiz__timer {
+  width: 100px;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  background-color: #ccc;
+}
+
+.quiz__timerNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 999px;
+
+  background-color: #f5f5f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(100, 100, 255, 0.8);
 }
 
 .quiz__answerContainer {
@@ -56,12 +121,16 @@
   transition: all 0.1s ease;
 }
 
+.quiz__answer * {
+  cursor: pointer;
+}
+
 .quiz__answer img {
-    width: 100%;
-    height: auto;
-    max-height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .quiz__answer:hover {
@@ -69,12 +138,12 @@
 }
 
 .quiz__answerCorrect {
-  background-color: #2fd870 !important;
+  background-color: #b3ffae !important;
   pointer-events: none;
 }
 
 .quiz__answerWrong {
-  background-color: #e95757 !important;
+  background-color: #ffc0cb !important;
   pointer-events: none;
 }
 
@@ -95,7 +164,9 @@
 }
 
 .quiz__prev,
-.quiz__next {
+.quiz__next,
+.quiz__skip,
+.quiz__startButton {
   width: 100px;
   height: 40px;
 
@@ -113,8 +184,19 @@
 }
 
 .quiz__prev:hover,
-.quiz__next:hover {
+.quiz__next:hover,
+.quiz__skip:hover,
+.quiz__startButton:hover {
   background-color: #e2e2e2;
+}
+
+.quiz__skip {
+  border-color: rgb(250, 220, 0);
+  color: rgb(230, 180, 0);
+}
+
+.quiz__skip:hover {
+  background-color: rgba(250, 220, 0, 0.2);
 }
 
 .quiz__result {
@@ -133,7 +215,7 @@
 }
 
 .quiz__resultButton {
-  width: 160px;
+  width: 150px;
   height: 40px;
 
   background: none;
