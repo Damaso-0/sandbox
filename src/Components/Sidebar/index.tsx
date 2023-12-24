@@ -18,6 +18,10 @@ const items = [
     title: 'Tabs',
     href: '/tabs',
   },
+  {
+    title: 'Article',
+    href: '/article',
+  },
 ]
 
 const Sidebar = () => {

@@ -1,0 +1,13 @@
+.articlePage__container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.articlePage__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}

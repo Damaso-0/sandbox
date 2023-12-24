@@ -1,4 +1,40 @@
-export const quizData = {
+export const articleQuizData = {
+  title: null,
+  description: null,
+  cover: null,
+  questions: [
+    {
+      cover: null,
+      question: 'Qual super-herói é conhecido como o “Cavaleiro das Trevas”?',
+      answers: [
+        {
+          text: 'Homem-Aranha',
+          image: null,
+          correct: false,
+        },
+        {
+          text: 'Batman',
+          image: null,
+          correct: true,
+        },
+        {
+          text: 'Superman',
+          image: null,
+          correct: false,
+        },
+        {
+          text: 'Flash',
+          image: null,
+          correct: false,
+        },
+      ],
+      timeOut: 10000,
+      timer: false,
+    }
+  ],
+}
+
+export const articleQuizMultData = {
   title: 'Super Hero Quiz',
   description: 'Test your knowledge of super heroes',
   cover:

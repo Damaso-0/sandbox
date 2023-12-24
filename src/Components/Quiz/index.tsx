@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { H3, P } from '../Typograph'
 import styles from './index.module.css'
 import Image from 'next/image'
+import Check from '../Icons/Check'
 
 interface IQuestion {
   cover?: string | null
@@ -14,6 +15,7 @@ interface IQuestion {
     correct: boolean
   }[]
   timeOut?: number
+  timer?: boolean
 }
 
 interface IQuiz {
@@ -28,6 +30,7 @@ const Quiz = ({ data }: { data: IQuiz }) => {
   const [currentAnswer, setCurrentAnswer] = useState<number | null>(null)
   const [finished, setFinished] = useState<boolean | null>(null)
   const [reveal, setReveal] = useState(false)
+  const [timer, setTimer] = useState(false)
 
   const defaultTime = 10000
   const [timeOut, setTimeOut] = useState(
@@ -40,26 +43,30 @@ const Quiz = ({ data }: { data: IQuiz }) => {
   const [quizResult, setQuizResult] = useState<boolean[]>([])
 
   useEffect(() => {
+    setTimer(data?.questions[currentQuestion]?.timer ?? false)
     setTimeOut(data?.questions[currentQuestion]?.timeOut ?? defaultTime)
     setTime(data?.questions[currentQuestion]?.timeOut ?? defaultTime)
   }, [data, currentQuestion])
 
   useEffect(() => {
-    if (time > 0 && !reveal && finished !== null) {
-      const interval = setInterval(() => {
-        setTime(time - 1000)
-      }, 1000)
-      return () => clearInterval(interval)
-    } else if (time === 0) {
-      setReveal(true)
+    if (timer) {
+      if (time > 0 && !reveal && finished !== null) {
+        const interval = setInterval(() => {
+          setTime(time - 1000)
+        }, 1000)
+        return () => clearInterval(interval)
+      } else if (time === 0) {
+        setReveal(true)
+      }
     }
-  }, [time, reveal, finished])
+  }, [timer, time, reveal, finished])
 
   const changeQuestion = () => {
     setCurrentQuestion(currentQuestion + 1)
     setCurrentAnswer(null)
     setReveal(false)
     setTime(data?.questions[currentQuestion]?.timeOut ?? defaultTime)
+    setTimer(data?.questions[currentQuestion]?.timer ?? false)
 
     if (currentQuestion === data?.questions?.length - 1) {
       setFinished(true)
@@ -81,6 +88,7 @@ const Quiz = ({ data }: { data: IQuiz }) => {
     setCurrentAnswer(null)
     setReveal(false)
     setTime(data?.questions[currentQuestion]?.timeOut ?? defaultTime)
+    setTimer(data?.questions[currentQuestion]?.timer ?? false)
     setQuizResult([])
     setFinished(false)
   }
@@ -99,10 +107,11 @@ const Quiz = ({ data }: { data: IQuiz }) => {
         )}
         {data?.title && <H3>{data?.title}</H3>}
         {data?.description && (
-          <P style={{ color: '#888' }}>{data?.description}</P>
+          <P style={{ color: '#888', marginTop: -8 }}>{data?.description}</P>
         )}
 
         <button
+          type="button"
           className={styles.quiz__startButton}
           onClick={() => setFinished(false)}>
           Iniciar
@@ -131,23 +140,25 @@ const Quiz = ({ data }: { data: IQuiz }) => {
                   <H3 className={styles.quiz__question}>{item?.question}</H3>
                 </div>
 
-                <div className={styles.quiz__timerContainer}>
-                  <div
-                    className={styles.quiz__timer}
-                    style={{
-                      background: `conic-gradient(rgb(100, 100, 255) ${
-                        360 - (time / timeOut) * 360
-                      }deg, #ccc 0deg, #ccc 0deg)`,
-                    }}>
-                    <div className={styles.quiz__timerNumber}>{`${(
-                      time /
-                      1000 /
-                      60
-                    ).toFixed(0)}:${((time / 1000) % 60)
-                      .toFixed(0)
-                      .padStart(2, '0')}`}</div>
+                {timer && (
+                  <div className={styles.quiz__timerContainer}>
+                    <div
+                      className={styles.quiz__timer}
+                      style={{
+                        background: `conic-gradient(rgb(100, 100, 255) ${
+                          360 - (time / timeOut) * 360
+                        }deg, #ccc 0deg, #ccc 0deg)`,
+                      }}>
+                      <div className={styles.quiz__timerNumber}>{`${(
+                        time /
+                        1000 /
+                        60
+                      ).toFixed(0)}:${((time / 1000) % 60)
+                        .toFixed(0)
+                        .padStart(2, '0')}`}</div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <div
@@ -170,6 +181,7 @@ const Quiz = ({ data }: { data: IQuiz }) => {
 
                   return (
                     <button
+                      type="button"
                       className={`${styles.quiz__answer} ${answerClass}`}
                       key={answer?.text}
                       onClick={() => selectAnswer(index)}>
@@ -183,34 +195,44 @@ const Quiz = ({ data }: { data: IQuiz }) => {
                       )}
 
                       {answer?.text}
+
+                      {reveal && (
+                        <div className={styles.quiz__answerCheck}>
+                          <Check state={isAnswerCorrect} />
+                        </div>
+                      )}
                     </button>
                   )
                 })}
               </div>
 
-              <div className={styles.quiz__controls}>
-                <div className={styles.quiz__progress}>
-                  {currentQuestion + 1} / {data?.questions?.length}
+              {data && data?.questions?.length > 1 && (
+                <div className={styles.quiz__controls}>
+                  <div className={styles.quiz__progress}>
+                    {currentQuestion + 1} / {data?.questions?.length}
+                  </div>
+
+                  {!reveal && (
+                    <button
+                      type="button"
+                      className={styles.quiz__skip}
+                      onClick={() => setReveal(true)}>
+                      Pular
+                    </button>
+                  )}
+
+                  {reveal && (
+                    <button
+                      type="button"
+                      className={styles.quiz__next}
+                      onClick={changeQuestion}>
+                      {currentQuestion === data?.questions?.length - 1
+                        ? 'Finalizar'
+                        : 'Próximo'}
+                    </button>
+                  )}
                 </div>
-
-                {!reveal && (
-                  <button
-                    className={styles.quiz__skip}
-                    onClick={() => setReveal(true)}>
-                    Pular
-                  </button>
-                )}
-
-                {reveal && (
-                  <button
-                    className={styles.quiz__next}
-                    onClick={changeQuestion}>
-                    {currentQuestion === data?.questions?.length - 1
-                      ? 'Finalizar'
-                      : 'Próximo'}
-                  </button>
-                )}
-              </div>
+              )}
             </div>
           )
         )
@@ -227,6 +249,7 @@ const Quiz = ({ data }: { data: IQuiz }) => {
           {data?.questions?.length}
         </div>
         <button
+          type="button"
           className={styles.quiz__resultButton}
           onClick={() => resetQuiz()}>
           Refazer quiz
@@ -235,12 +258,14 @@ const Quiz = ({ data }: { data: IQuiz }) => {
     )
   }
 
-  if (finished === null) {
+  if (finished === null && data?.title && data?.description) {
     return <QuizPresentation />
   } else if (finished === false) {
     return <QuizQuestions />
-  } else if (finished === true) {
+  } else if (finished === true && data?.questions?.length > 1) {
     return <QuizResult />
+  } else if (data?.questions?.length === 1) {
+    return <QuizQuestions />
   } else {
     return null
   }
