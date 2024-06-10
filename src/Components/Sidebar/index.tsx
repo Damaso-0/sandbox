@@ -22,6 +22,14 @@ const items = [
     title: 'Article',
     href: '/article',
   },
+  {
+    title: 'Sidebar',
+    href: '/sidebar',
+  },
+  {
+    title: 'Shorts',
+    href: '/shorts',
+  },
 ]
 
 const Sidebar = () => {
